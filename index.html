@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,9 +15,20 @@
 
     <!-- Tailwind Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Script for toggling dark and light mode, its put here to avoid flash of unstyled content when changing themes -->
+    <script>
+        if (localStorage.getItem("color-theme") === 'dark' || (!('color-theme') in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
+    <script src="js/script.js" defer></script>
     <title>Fylo | All your files in one secure location</title>
   </head>
   <body class="dark:bg-darkBlue dark:text-white font-opensans">
+    
     <!-- ============================================ -->
     <!--                   NAVIGATION                 -->
     <!-- ============================================ -->
@@ -55,7 +66,7 @@
           <!-- Light SVG Icon -->
           <svg
             id="theme-toggle-light-icon"
-            class="w-5 h-5"
+            class="w-5 h-5 hidden"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -69,5 +80,8 @@
         </button>
       </div>
     </header>
+
+
+    
   </body>
 </html>
